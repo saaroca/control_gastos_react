@@ -1,10 +1,34 @@
 import React from 'react'
 import NuevoPresupuesto from './NuevoPresupuesto'
-const Header = () => {
+import ControlPresupuesto from './ControlPresupuesto'
+import { useState } from 'react'
+
+const Header = ({
+  gastos,
+  setGastos,
+  presupuesto, 
+  setPresupuesto, 
+  isValidPresupuesto, 
+  setIsValidPresupuesto}) => {
   return (
     <header>
+
         <h1>Planificador de gastos</h1>
-        <NuevoPresupuesto/>
+        {
+        isValidPresupuesto ? (
+          <ControlPresupuesto 
+            gastos={gastos}
+            setGastos={setGastos}
+            presupuesto={presupuesto}
+            setPresupuesto={setPresupuesto}
+            setIsValidPresupuesto={setIsValidPresupuesto}
+            />
+        ) : (<NuevoPresupuesto
+        presupuesto={presupuesto}
+        setPresupuesto={setPresupuesto}
+        setIsValidPresupuesto={setIsValidPresupuesto}/>
+        )}
+        
     </header>
   )
 }
